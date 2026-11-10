@@ -1,4 +1,4 @@
-[![release](https://github.com/marthydavid/supermicro-letsencrypt/actions/workflows/release.yml/badge.svg?branch=main)](https://github.com/marthydavid/supermicro-letsencrypt/actions/workflows/release.yml)
+[![release](https://github.com/mschout/supermicro-letsencrypt/actions/workflows/release.yml/badge.svg?branch=main)](https://github.com/mschout/supermicro-letsencrypt/actions/workflows/release.yml)
 
 # supermicro-letsencrypt
 
@@ -24,6 +24,12 @@ Docker container to install Supermicro IPMI TLS certificates via ACME
 
 # Usage with Docker
 
+The release workflow builds images for `linux/amd64` and `linux/arm64` on pushes
+to `main` and version tags (`v*.*.*`). It can also be started from **Actions →
+release → Run workflow**. Images are published to `ghcr.io/<owner>/<repository>`
+using the workflow's built-in `GITHUB_TOKEN`; no registry secret is required.
+Use `:main` for the latest main-branch build or a version tag for a release.
+
 ```bash
 docker run -v ~/.aws:/home/lego/.aws \
            -v ~/.lego:/home/lego/.lego \
@@ -33,7 +39,7 @@ docker run -v ~/.aws:/home/lego/.aws \
            -e LE_EMAIL=me@my.tld \
            -e DNS_PROVIDER=route53 \
            -e MODEL=X10 \
-           ghcr.io/marthydavid/supermicro-letsencrypt
+           ghcr.io/mschout/supermicro-letsencrypt:main
 ```
 
 
